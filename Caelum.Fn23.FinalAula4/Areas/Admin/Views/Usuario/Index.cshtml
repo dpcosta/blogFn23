@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Caelum.Fn23.Curso.Models.Usuario>
+
+@{
+    ViewBag.Title = "Usuários - Resenha Cultural";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Lista de Usuários</h2>
+<div class="row">
+    <p class="col-8">Cadastro dos usuários registrados no sistema.</p>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UltimoLogin)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UltimoLogin)
+        </td>
+    </tr>
+}
+
+</table>

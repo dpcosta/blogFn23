@@ -1,0 +1,9 @@
+﻿@model System.Exception
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Desculpe, um erro ocorreu...</h2>
+<p>Erro: @Model.Message</p>
+<h4>Mais detalhes</h4>
+<code>@Model.StackTrace</code>

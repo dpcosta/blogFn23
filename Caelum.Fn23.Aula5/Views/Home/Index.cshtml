@@ -1,0 +1,19 @@
+﻿@model IList<Post>
+
+@{ 
+    var termo = this.ViewContext.HttpContext.Request.QueryString["termo"];
+}
+
+@if (!string.IsNullOrEmpty(termo))
+{
+    <p>Você pesquisou por @termo...</p>
+    <p>Posts encontrados: @Model.Count</p>
+}
+
+@foreach(var post in Model)
+{
+    <article>
+        <h1>@post.Titulo</h1>
+        <p>@post.Resumo</p>
+    </article>
+}

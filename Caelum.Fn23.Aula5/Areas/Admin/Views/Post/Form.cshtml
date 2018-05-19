@@ -1,0 +1,62 @@
+﻿@model Post
+
+@{
+    //uma solução mais elegante e OO seria criar um view model para essas info:
+    string ctrlName = this.ViewContext.RouteData.GetRequiredString("controller");
+    string actionName = this.ViewContext.RouteData.GetRequiredString("action");
+    bool edicao = (actionName == "Detalhe") || (actionName == "Altera");
+    string titulo = edicao ? "Detalhe do Post" : "Inclusão de Post";
+    string actionForm = edicao ? "Altera" : "Adiciona";
+}
+
+<h1>@titulo</h1>
+
+
+@using (Html.BeginForm(actionName: actionForm, controllerName: ctrlName))
+{
+    @Html.EditorFor(p => p, new { Edicao = edicao })
+    <button type="submit" class="btn btn-primary">Gravar</button>
+}
+
+
+@*
+    Se eu chamar esse método dentro de uma view "direta" (que contém o corpo)
+    @RenderBody()
+
+    Vai gerar o erro:
+        The file "*.cshtml" cannot be requested directly because it calls
+        the "RenderBody" method.
+
+    O mesmo acontece se eu chamar
+    @RenderSection()
+
+
+    Já a chamada para
+    @Html.Partial("Teste")
+
+    funciona!
+
+
+*@
+
+
+@section Scripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $("input[name=Categoria]").autocomplete({
+            source: function (request, response) {
+                $.post(
+                    "/Post/CategoriaAutocomplete",
+                    { term: request.term },
+                    function (data) {
+                        response(data);
+                    }
+                );
+            },
+        });
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿@model Post
+
+@if (Convert.ToBoolean(ViewData["Edicao"]))
+{
+    @Html.HiddenFor(p => p.Id)
+    @Html.HiddenFor(p => p.DataPublicacao)
+    @Html.HiddenFor(p => p.Publicado)
+}
+
+@Html.LabelFor(p => p.Titulo)
+@Html.TextBoxFor(p => p.Titulo, new { @class = "form-control" })
+@Html.ValidationMessageFor(p => p.Titulo)
+<br />
+
+@Html.LabelFor(p => p.Resumo)
+@Html.TextAreaFor(p => p.Resumo, new { @class = "form-control", rows = "5" })
+@Html.ValidationMessageFor(p => p.Resumo)
+<br />
+
+@Html.LabelFor(p => p.Categoria)
+@Html.TextBoxFor(p => p.Categoria, new { @class = "form-control" })
+@Html.ValidationMessageFor(p => p.Categoria)
+<br />
+

@@ -1,0 +1,19 @@
+﻿@model System.Exception
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Resenha Cultural - Erro</title>
+</head>
+<body>
+    <h2>Desculpe, um erro ocorreu...</h2>
+    <p>Erro: @Model.Message</p>
+    <h4>Mais detalhes</h4>
+    <code>@Model.StackTrace</code>
+</body>
+</html>

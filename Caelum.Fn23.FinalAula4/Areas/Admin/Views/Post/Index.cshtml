@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Post>
+
+<h2>Lista de posts</h2>
+<div class="row">
+    <p class="col-8">Cadastro dos posts registrados no sistema.</p>
+    <p class="col-4 text-right">
+        @Html.ActionLink("Novo Post", "Novo", null, new { @class = "btn btn-primary" })
+    </p>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>Post</th>
+        <th>Autor</th>
+        <th>Categoria</th>
+        <th>Publicado?</th>
+        <th>Ações</th>
+    </tr>
+    @foreach (var post in Model)
+    {
+        <tr>
+            <td>
+                <h4>@Html.ActionLink(post.Titulo, "Detalhe", new { id = post.Id })</h4>
+                <p>@post.Resumo</p>
+            </td>
+            <td>
+                @if (post.Autor != null)
+                {
+                    @post.Autor.UserName
+                }
+            </td>
+            <td>@post.Categoria</td>
+            <td>
+                @if (post.Publicado)
+                {
+                    <span>@string.Format("{0:dd/MM/yyyy}", post.DataPublicacao)</span>
+                }
+                else
+                {
+                    <span>Não</span>
+                }
+            </td>
+            <td>
+                <form action="/Post/Publica" method="post">
+                    <input type="hidden" name="id" value="@post.Id" />
+                    <button class="btn btn-default">Publicar</button>
+                </form>
+                <form action="/Post/Remove" method="post">
+                    <input type="hidden" name="id" value="@post.Id" />
+                    <button class="btn btn-danger" type="submit">Remover</button>
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>

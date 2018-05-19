@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Usuario>
+
+<h2>Lista de usuários</h2>
+<div class="row">
+    <p class="col-8">Cadastro dos usuários registrados no sistema.</p>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>Login</th>
+        <th>Email</th>
+        <th>Último Login</th>
+        <th>Ações</th>
+    </tr>
+    @foreach (var usuario in Model)
+    {
+        <tr>
+            <td>
+                @usuario.UserName
+            </td>
+            <td>@usuario.Email</td>
+            <td>
+                @usuario.UltimoLogin
+            </td>
+            <td>
+                <form action="/Admin/Usuario/Remove" method="post">
+                    <input type="hidden" name="id" value="@usuario.Id" />
+                    <button class="btn btn-danger" type="submit">Remover</button>
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>

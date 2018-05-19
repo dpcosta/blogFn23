@@ -1,0 +1,23 @@
+﻿<aside>
+    <div>
+        <h3>Buscar</h3>
+        <!--formulário de busca-->
+        @using (Html.BeginForm("Busca", "Home", FormMethod.Get, new { @class = "inline-form" }))
+        {
+        <div class="input-group">
+            @Html.TextBox("termo", null, new { @class = "form-control", placeholder = "Buscar por..." })
+            <span class="input-group-append">
+                <button class="btn btn-default" type="submit">Ok</button>
+            </span>
+        </div>
+        }
+    </div>
+    <div>
+        <h3>Categorias</h3>
+        <!--lista de categorias-->
+    </div>
+    <div>
+        <h3>Autores</h3>
+        <!--lista de autores-->
+    </div>
+</aside>

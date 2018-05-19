@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Usuario>
+
+<h2>Lista de usuários</h2>
+<div class="row">
+    <p class="col-8">Cadastro dos usuários registrados no sistema.</p>
+</div>
+<table class="table table-striped">
+    <tr>
+        <th>Usuário</th>
+        <th>Email</th>
+        <th>Último Login</th>
+    </tr>
+    @foreach (var usuario in Model)
+    {
+        <tr>
+            <td>@usuario.UserName</td>
+            <td>@usuario.Email</td>
+            <td>@usuario.UltimoLogin</td>
+        </tr>
+    }
+</table>
